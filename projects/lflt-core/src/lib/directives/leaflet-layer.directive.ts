@@ -3,6 +3,7 @@ import { Directive, Input, OnChanges, SimpleChanges, OnDestroy } from '@angular/
 import { GeoJsonObject } from 'geojson';
 import * as L from 'leaflet';
 
+import { LFLT_MAP_READY } from '../components/leaflet-map/leaflet-map.component';
 import { MapFacade, EventPayload, EventInterface } from '../services/map-facade.service';
 import { Observable, Subject, zip } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -11,7 +12,6 @@ export const OUTLINE_STYLE: L.PathOptions = { color: '#cccccc', weight: 1, fillO
 
 export const BLANK_STYLE: L.PathOptions = {color: '#aaaaaa', weight: 1, fillOpacity: 0};
 
-export const LFLT_MAP_READY = 'LFLT_MAP_READY';
 const LFLT_TILE_LAYER_READY = 'LFLT_TILE_LAYER_READY';
 const LFLT_GEOJSON_LAYER_READY = 'LFLT_GEOJSON_LAYER_READY';
 

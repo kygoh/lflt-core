@@ -2,6 +2,6 @@
  * Public API Surface of lflt-core
  */
 
-export * from './lib/lflt-core.service';
-export * from './lib/lflt-core.component';
+export * from './lib/components/leaflet-map/leaflet-map.component';
+export * from './lib/directives/leaflet-layer.directive';
 export * from './lib/lflt-core.module';

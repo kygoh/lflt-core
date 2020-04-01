@@ -42,6 +42,127 @@
           }
         }
       }
+    },
+    "lflt-core-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/lflt-core-demo",
+      "sourceRoot": "projects/lflt-core-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/lflt-core-demo",
+            "index": "projects/lflt-core-demo/src/index.html",
+            "main": "projects/lflt-core-demo/src/main.ts",
+            "polyfills": "projects/lflt-core-demo/src/polyfills.ts",
+            "tsConfig": "projects/lflt-core-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/lflt-core-demo/src/favicon.ico",
+              "projects/lflt-core-demo/src/assets"
+            ],
+            "styles": [
+              "projects/lflt-core-demo/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/lflt-core-demo/src/environments/environment.ts",
+                  "with": "projects/lflt-core-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lflt-core-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "lflt-core-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lflt-core-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lflt-core-demo/src/test.ts",
+            "polyfills": "projects/lflt-core-demo/src/polyfills.ts",
+            "tsConfig": "projects/lflt-core-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/lflt-core-demo/karma.conf.js",
+            "assets": [
+              "projects/lflt-core-demo/src/favicon.ico",
+              "projects/lflt-core-demo/src/assets"
+            ],
+            "styles": [
+              "projects/lflt-core-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lflt-core-demo/tsconfig.app.json",
+              "projects/lflt-core-demo/tsconfig.spec.json",
+              "projects/lflt-core-demo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/lflt-core-demo/e2e/protractor.conf.js",
+            "devServerTarget": "lflt-core-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lflt-core-demo:serve:production"
+            }
+          }
+        }
+      }
     }},
   "defaultProject": "lflt-core"
 }

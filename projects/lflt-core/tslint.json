@@ -1,16 +1,24 @@
 {
   "extends": "../../tslint.json",
   "rules": {
+    "typedef": [
+      true,
+      "call-signature",
+      "arrow-call-signature",
+      "parameter",
+      "arrow-parameter",
+      "property-declaration"
+    ],
     "directive-selector": [
       true,
-      "attribute",
-      "lib",
-      "camelCase"
+      [ "element", "attribute" ],
+      "lflt",
+      "kebab-case"
     ],
     "component-selector": [
       true,
       "element",
-      "lib",
+      "lflt",
       "kebab-case"
     ]
   }

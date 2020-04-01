@@ -93,7 +93,7 @@ export class LeafletTileLayerDirective extends LeafletLayer implements OnChanges
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.urlTemplate) {
+    if (changes.urlTemplate && this.urlTemplate) {
       this.mapFacade.broadcast({
         type: this.eventType
       });
@@ -123,7 +123,7 @@ export class LeafletGeoJSONLayerDirective extends LeafletLayer implements OnChan
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.geojson) {
+    if (changes.geojson && this.geojson) {
       this.mapFacade.broadcast({
         type: this.eventType
       });

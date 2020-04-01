@@ -6,6 +6,9 @@
     "declaration": true,
     "inlineSources": true,
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "types": [],
     "lib": [
       "dom",

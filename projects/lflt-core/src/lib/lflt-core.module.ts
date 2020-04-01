@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { LfltCoreComponent } from './lflt-core.component';
-
+import { LeafletServiceModule } from './services/leaflet-service.module';
 
 
 @NgModule({
-  declarations: [LfltCoreComponent],
-  imports: [
+  declarations: [
   ],
-  exports: [LfltCoreComponent]
+  imports: [
+    LeafletServiceModule
+  ],
+  exports: [
+  ]
 })
 export class LfltCoreModule { }

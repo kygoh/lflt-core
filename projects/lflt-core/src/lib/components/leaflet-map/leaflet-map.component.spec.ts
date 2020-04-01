@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LfltCoreComponent } from './lflt-core.component';
+import { LeafletMapComponent } from './leaflet-map.component';
 
-describe('LfltCoreComponent', () => {
-  let component: LfltCoreComponent;
-  let fixture: ComponentFixture<LfltCoreComponent>;
+describe('LeafletMapComponent', () => {
+  let component: LeafletMapComponent;
+  let fixture: ComponentFixture<LeafletMapComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LfltCoreComponent ]
+      declarations: [ LeafletMapComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LfltCoreComponent);
+    fixture = TestBed.createComponent(LeafletMapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

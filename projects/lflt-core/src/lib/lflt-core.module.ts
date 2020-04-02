@@ -5,13 +5,21 @@ import {
   LeafletTileLayerDirective,
   LeafletGeoJSONLayerDirective
 } from './directives/leaflet-layer.directive';
+import { LeafletInteractiveLayerDirective } from './directives/leaflet-interactive-layer.directive';
+import {
+  LeafletInteractiveObservableLayersDirective,
+  LeafletInteractiveObserverLayersDirective
+} from './directives/leaflet-interactive-layers.directive';
 
 
 @NgModule({
   declarations: [
     LeafletMapComponent,
     LeafletTileLayerDirective,
-    LeafletGeoJSONLayerDirective
+    LeafletGeoJSONLayerDirective,
+    LeafletInteractiveLayerDirective,
+    LeafletInteractiveObservableLayersDirective,
+    LeafletInteractiveObserverLayersDirective
   ],
   imports: [
     LeafletServiceModule
@@ -19,7 +27,10 @@ import {
   exports: [
     LeafletMapComponent,
     LeafletTileLayerDirective,
-    LeafletGeoJSONLayerDirective
+    LeafletGeoJSONLayerDirective,
+    LeafletInteractiveLayerDirective,
+    LeafletInteractiveObservableLayersDirective,
+    LeafletInteractiveObserverLayersDirective
   ]
 })
 export class LfltCoreModule { }

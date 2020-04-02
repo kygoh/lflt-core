@@ -1,0 +1,29 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<lflt-map class="map-container">
+  <lflt-tile-layer [urlTemplate]="tileLayerUrl" [options]="tileLayerOptions"></lflt-tile-layer>
+
+  <lflt-geojson-layer [geojson]="malaysiaParliamentMap$ | async" [options]="geojsonOptions">
+  </lflt-geojson-layer>
+
+  <lflt-interactive-layers>
+    <lflt-interactive-layer property="ADM1_PCODE" label="ADM1_EN" [geojson]="mysAdm1$ | async" [style]=" { color: '#bfbfbf', weight: 0.5, fillOpacity: 0 }"></lflt-interactive-layer>
+    <lflt-interactive-layer property="ADM2_PCODE" label="ADM2_EN" [geojson]="mysAdm2$ | async" [style]=" { color: '#bfbfbf', weight: 0.5, fillOpacity: 0, interactive: false }"></lflt-interactive-layer>
+  </lflt-interactive-layers>
+
+</lflt-map>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+

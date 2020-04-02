@@ -22,16 +22,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'lflt-core-demo'`, () => {
+  it(`should have as tileLayerUrl 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('lflt-core-demo');
+    expect(app.tileLayerUrl).toEqual('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png');
   });
 
-  it('should render title', () => {
+  it('should render map', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('lflt-core-demo app is running!');
+    expect(compiled.querySelector('div[id]').id).toEqual('map');
   });
 });

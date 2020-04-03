@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Angular components and directives for leaflet",
   "files": [
-    "dist"
+    "dist/lflt-core"
   ],
   "scripts": {
     "ng": "ng",

@@ -1,6 +1,7 @@
 {
   "name": "lflt-core",
   "version": "0.0.0",
+  "description": "Angular components and directives for leaflet",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +10,19 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kygoh/lflt-core.git"
+  },
+  "keywords": [
+    "angular",
+    "leaflet"
+  ],
+  "author": "Goh Keng Yew",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@kygoh"
+  },
   "dependencies": {
     "@angular/animations": "~9.0.5",
     "@angular/common": "~9.0.5",

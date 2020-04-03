@@ -1,6 +1,6 @@
 {
   "name": "lflt-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular components and directives for leaflet",
   "files": [
     "dist/lflt-core"

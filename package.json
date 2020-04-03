@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "publish_dist": "cd dist/lflt-core && npm deploy",
+    "publish_dist": "cd dist/lflt-core && npm publish",
     "deploy": "ng build --prod && npm run publish_dist"
   },
   "repository": {

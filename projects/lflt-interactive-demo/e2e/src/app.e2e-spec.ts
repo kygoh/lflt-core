@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display leaflet map', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('lflt-interactive-demo app is running!');
+    expect(page.isLeafletMapPresent()).toEqual(true);
   });
 
   afterEach(async () => {

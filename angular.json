@@ -275,7 +275,8 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "projects/lflt-interactive-demo/e2e/protractor.conf.js",
-            "devServerTarget": "lflt-interactive-demo:serve"
+            "devServerTarget": "lflt-interactive-demo:serve",
+            "port": 4300
           },
           "configurations": {
             "production": {

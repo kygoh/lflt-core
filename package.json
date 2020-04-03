@@ -1,22 +1,25 @@
 {
   "name": "lflt-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular components and directives for leaflet",
-  "files": [
-    "dist/lflt-core"
-  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publish_dist": "cd dist/lflt-core && npm deploy",
+    "deploy": "ng build --prod && npm run publish_dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kygoh/lflt-core.git"
   },
+  "bugs": {
+    "url": "https://github.com/kygoh/lflt-core/issues"
+  },
+  "homepage": "https://github.com/kygoh/lflt-core",
   "keywords": [
     "angular",
     "leaflet"

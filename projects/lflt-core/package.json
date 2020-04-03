@@ -1,6 +1,23 @@
 {
   "name": "lflt-core",
-  "version": "0.0.1",
+  "version": "0.0.4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kygoh/lflt-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kygoh/lflt-core/issues"
+  },
+  "homepage": "https://github.com/kygoh/lflt-core",
+  "keywords": [
+    "angular",
+    "leaflet"
+  ],
+  "author": "Goh Keng Yew",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@kygoh"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",

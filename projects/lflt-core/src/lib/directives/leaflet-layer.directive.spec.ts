@@ -9,41 +9,41 @@ import {
 import { LeafletServiceModule } from '../services/leaflet-service.module';
 import { MapFacade } from '../services/map-facade.service';
 
-describe('LeafletTileLayerDirective', () => {
+describe('LeafletTileLayerDirective', (): void => {
   let mapFacade: MapFacade;
 
-  beforeEach(async(() => {
+  beforeEach(async((): void => {
     TestBed.configureTestingModule({
       imports: [ LeafletServiceModule ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach((): void => {
     mapFacade = TestBed.inject(MapFacade);
   });
 
-  it('should create an instance', () => {
+  it('should create an instance', (): void => {
     const directive: LeafletTileLayerDirective = new LeafletTileLayerDirective(mapFacade);
     expect(directive).toBeTruthy();
   });
 });
 
-describe('LeafletGeoJSONLayerDirective', () => {
+describe('LeafletGeoJSONLayerDirective', (): void => {
   let mapFacade: MapFacade;
 
-  beforeEach(async(() => {
+  beforeEach(async((): void => {
     TestBed.configureTestingModule({
       imports: [ LeafletServiceModule ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach((): void => {
     mapFacade = TestBed.inject(MapFacade);
   });
 
-  it('should create an instance', () => {
+  it('should create an instance', (): void => {
     const directive: LeafletGeoJSONLayerDirective = new LeafletGeoJSONLayerDirective(mapFacade);
     expect(directive).toBeTruthy();
   });

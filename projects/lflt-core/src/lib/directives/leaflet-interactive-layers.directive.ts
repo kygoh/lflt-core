@@ -38,7 +38,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
 
   get areLayersReady(): boolean {
     const allLayersReady: boolean = !this.interactiveLayerDirectives.some(
-      (directive: LeafletInteractiveLayerDirective) => !directive.isReady
+      (directive: LeafletInteractiveLayerDirective): boolean => !directive.isReady
     );
     return allLayersReady;
   }
@@ -62,7 +62,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
       // tslint:disable-next-line:variable-name
       _directive: LeafletInteractiveLayerDirective,
       index: number
-    ) => (index === target));
+    ): boolean => (index === target));
   }
 
   ngAfterViewChecked(): void {
@@ -93,7 +93,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
   private initComponents(map: L.Map): void {
     const layer: L.GeoJSON = this.makeLayer();
     layer.addTo(map);
-    map.on('click', (ev: L.LeafletMouseEvent) => {
+    map.on('click', (ev: L.LeafletMouseEvent): void => {
       console.log(`LeafletInteractiveLayers::initComponents:map.on('click')`);
       this.zoomOut(ev);
     });
@@ -102,10 +102,10 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
     };
     this.event$
       .pipe(
-        filter((event: EventInterface) => !event || event.type === LFLT_BOUNDARY_CHANGED),
+        filter((event: EventInterface): boolean => !event || event.type === LFLT_BOUNDARY_CHANGED),
         takeUntil(this.unsubscribe$)
       )
-      .subscribe((event: EventInterface) => {
+      .subscribe((event: EventInterface): void => {
         const payload: EventPayload = {
           boundaryHierarchy: {},
           bounds: undefined,
@@ -133,7 +133,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
         });
       }
     }
-    layer.on('click', (ev: L.LeafletMouseEvent) => {
+    layer.on('click', (ev: L.LeafletMouseEvent): void => {
       console.log(`layer.on('click')`);
       this.zoomIn(ev, feature, layer);
     });
@@ -141,7 +141,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
 
   private filter = (feature: Feature<GeometryObject, GeoJsonProperties>): boolean => {
     return Object.keys(this.selectionProperties)
-      .every((key: string) => this.selectionProperties[key] === feature.properties[key]);
+      .every((key: string): boolean => this.selectionProperties[key] === feature.properties[key]);
   }
 
   private styleFn: L.StyleFunction<GeoJsonProperties> = (
@@ -175,7 +175,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
     }
     ++thisLayer;
     const boundaryHierarchy: BoundaryHierarchyIntf = this.interactiveLayerDirectives
-      .reduce((result: any, interactiveLayerDirective: LeafletInteractiveLayerDirective) => {
+      .reduce((result: any, interactiveLayerDirective: LeafletInteractiveLayerDirective): BoundaryHierarchyIntf => {
         const property: string = interactiveLayerDirective.property;
         if (feature.properties[property] !== undefined) {
           result[property] = feature.properties[property];
@@ -287,7 +287,7 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
       .pipe(
         takeUntil(this.unsubscribe$)
       )
-      .subscribe((event: EventInterface) => {
+      .subscribe((event: EventInterface): void => {
         super.broadcast(event);
       });
 

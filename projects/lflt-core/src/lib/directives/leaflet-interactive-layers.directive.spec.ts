@@ -9,10 +9,10 @@ import { MapFacade } from '../services/map-facade.service';
 
 import { from } from 'rxjs';
 
-describe('LeafletInteractiveObservableLayersDirective', () => {
+describe('LeafletInteractiveObservableLayersDirective', (): void => {
   let mapFacade: MapFacade;
 
-  beforeEach(async(() => {
+  beforeEach(async((): void => {
     TestBed.configureTestingModule({
       imports: [
         LeafletServiceModule
@@ -21,11 +21,11 @@ describe('LeafletInteractiveObservableLayersDirective', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach((): void => {
     mapFacade = TestBed.inject(MapFacade);
   });
 
-  it('should create an instance', () => {
+  it('should create an instance', (): void => {
     const observableMapFacade: MapFacade = {} as MapFacade;
     const directive: LeafletInteractiveObservableLayersDirective = new LeafletInteractiveObservableLayersDirective(
       mapFacade

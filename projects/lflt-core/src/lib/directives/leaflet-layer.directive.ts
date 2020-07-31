@@ -31,18 +31,18 @@ export abstract class LeafletReadyAware implements OnDestroy {
   private subscribe(eventType: string): void {
     const mapReady$: Observable<EventInterface> = this.mapFacade.event$
     .pipe(
-      filter((event: EventInterface) => event.type === LFLT_MAP_READY),
+      filter((event: EventInterface): boolean => event.type === LFLT_MAP_READY),
       takeUntil(this.unsubscribe$)
     );
 
     const layerReady$: Observable<EventInterface> = this.mapFacade.event$
     .pipe(
-      filter((event: EventInterface) => event.type === eventType),
+      filter((event: EventInterface): boolean => event.type === eventType),
       takeUntil(this.unsubscribe$)
     );
 
     zip(mapReady$, layerReady$)
-    .subscribe(([mapEvent, layerEvent]: EventInterface[]) => {
+    .subscribe(([mapEvent, layerEvent]: EventInterface[]): void => {
       this.whenReady(mapEvent.payload.map, layerEvent.payload);
     });
   }

@@ -10,7 +10,7 @@ TODO
 ## Install
 Install the package and its peer dependencies
 ```bash
-$ npm install @kygoh/lflt-core@0.0.4 --save
+$ npm install @kygoh/lflt-core --save
 $ npm install @types/leaflet leaflet --save
 ```
 

@@ -5,7 +5,7 @@ import {
   ContentChildren,
   QueryList
 } from '@angular/core';
-import { LeafletReadyAware, OUTLINE_STYLE } from './leaflet-layer.directive';
+import { LeafletReadyAwareDirective, OUTLINE_STYLE } from './leaflet-layer.directive';
 import { LeafletInteractiveLayerDirective } from './leaflet-interactive-layer.directive';
 import { MapFacade, EventPayload, EventInterface } from '../services/map-facade.service';
 import { Observable } from 'rxjs';
@@ -22,7 +22,7 @@ export const LFLT_BOUNDARY_CHANGED = 'LFLT_BOUNDARY_CHANGED';
 const LFLT_INTERACTIVE_LAYERS_READY = 'LFLT_INTERACTIVE_LAYERS_READY';
 
 @Directive()
-export abstract class LeafletInteractiveLayers extends LeafletReadyAware
+export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwareDirective
  implements AfterViewChecked {
 
   public selectionProperties: any = {};
@@ -245,7 +245,7 @@ export abstract class LeafletInteractiveLayers extends LeafletReadyAware
   selector: 'lflt-interactive-layers',
   exportAs: 'observable'
 })
-export class LeafletInteractiveObservableLayersDirective extends LeafletInteractiveLayers
+export class LeafletInteractiveObservableLayersDirective extends LeafletInteractiveLayersDirective
  implements AfterViewChecked {
 
   get interactiveLayerDirectives(): QueryList<LeafletInteractiveLayerDirective> {
@@ -267,7 +267,7 @@ export class LeafletInteractiveObservableLayersDirective extends LeafletInteract
 @Directive({
   selector: 'lflt-interactive-layers[observable])'
 })
-export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiveLayers implements AfterViewChecked {
+export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiveLayersDirective implements AfterViewChecked {
 
   @Input() observable: LeafletInteractiveObservableLayersDirective;
 

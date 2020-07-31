@@ -16,7 +16,7 @@ const LFLT_TILE_LAYER_READY = 'LFLT_TILE_LAYER_READY';
 const LFLT_GEOJSON_LAYER_READY = 'LFLT_GEOJSON_LAYER_READY';
 
 @Directive()
-export abstract class LeafletReadyAware implements OnDestroy {
+export abstract class LeafletReadyAwareDirective implements OnDestroy {
 
   protected unsubscribe$: Subject<void> = new Subject<void>();
 
@@ -55,7 +55,7 @@ export abstract class LeafletReadyAware implements OnDestroy {
   abstract whenReady(map: L.Map, payload?: EventPayload): void;
 }
 
-export abstract class LeafletLayer extends LeafletReadyAware {
+export abstract class LeafletLayer extends LeafletReadyAwareDirective {
   map: L.Map;
 
   constructor(

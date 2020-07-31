@@ -21,6 +21,7 @@ interface BoundaryHierarchyIntf {
 export const LFLT_BOUNDARY_CHANGED = 'LFLT_BOUNDARY_CHANGED';
 const LFLT_INTERACTIVE_LAYERS_READY = 'LFLT_INTERACTIVE_LAYERS_READY';
 
+@Directive()
 export abstract class LeafletInteractiveLayers extends LeafletReadyAware
  implements AfterViewChecked {
 

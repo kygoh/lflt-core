@@ -15,6 +15,7 @@ export const BLANK_STYLE: L.PathOptions = {color: '#aaaaaa', weight: 1, fillOpac
 const LFLT_TILE_LAYER_READY = 'LFLT_TILE_LAYER_READY';
 const LFLT_GEOJSON_LAYER_READY = 'LFLT_GEOJSON_LAYER_READY';
 
+@Directive()
 export abstract class LeafletReadyAware implements OnDestroy {
 
   protected unsubscribe$: Subject<void> = new Subject<void>();

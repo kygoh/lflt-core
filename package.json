@@ -9,8 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "version": "npm run build --prod",
-    "postversion": "cd dist/lflt-core && npm version $(node -p -e \"require('../../package.json').version\")",
+    "version": "cd projects/lflt-core && npm --no-git-tag-version version $(node -p -e \"require('../../package.json').version\")",
     "publish_dist": "cd dist/lflt-core && npm publish",
     "deploy": "ng build --prod && npm run publish_dist"
   },

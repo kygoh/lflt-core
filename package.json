@@ -1,6 +1,6 @@
 {
   "name": "lflt-core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Angular components and directives for leaflet",
   "scripts": {
     "ng": "ng",

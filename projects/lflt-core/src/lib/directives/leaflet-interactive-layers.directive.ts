@@ -40,6 +40,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
 
   @Input() style: L.PathOptions = OUTLINE_STYLE;
 
+  private broadcasted = false;
   private interactiveLayer: L.GeoJSON;
   private fitBounds: (bounds?: L.LatLngBounds) => void;
 
@@ -76,11 +77,12 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
 
   ngAfterViewChecked(): void {
     // instantiate interactive layer when map is created
-    if (this.areLayersReady) {
+    if (this.areLayersReady && !this.broadcasted) {
       console.log('LeafletInteractiveLayersDirective::ngAfterViewChecked', this.instanceId);
       this.mapFacade.broadcast({
         type: LFLT_INTERACTIVE_LAYERS_READY
       });
+      this.broadcasted = true;
     }
   }
 
@@ -287,6 +289,8 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
     return this.observable.interactiveLayerDirectivesQueryList;
   }
 
+  private subscribed = false;
+
   constructor(
     mapFacade: MapFacade
   ) {
@@ -295,7 +299,7 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
   }
 
   ngAfterViewChecked(): void {
-    if (this.areLayersReady) {
+    if (this.areLayersReady && !this.subscribed) {
       console.log('LeafletInteractiveObserverLayersDirective::subscribed', this.instanceId);
       this.observable.event$
       .pipe(
@@ -304,7 +308,7 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
       .subscribe((event: EventInterface): void => {
         super.broadcast(event);
       });
-
+      this.subscribed = true;
     }
     super.ngAfterViewChecked();
   }

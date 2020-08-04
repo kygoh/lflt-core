@@ -19,6 +19,7 @@ interface BoundaryHierarchyIntf {
 }
 
 export const LFLT_BOUNDARY_CHANGED = 'LFLT_BOUNDARY_CHANGED';
+export const LFLT_THEMATIC_PERIOD_CHANGED = 'LFLT_THEMATIC_PERIOD_CHANGED';
 const LFLT_INTERACTIVE_LAYERS_READY = 'LFLT_INTERACTIVE_LAYERS_READY';
 
 const uuidv4 = () => {
@@ -303,6 +304,10 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
       console.log('LeafletInteractiveObserverLayersDirective::subscribed', this.instanceId);
       this.observable.event$
       .pipe(
+        filter((event: EventInterface): boolean => !event
+          || event.type === LFLT_BOUNDARY_CHANGED
+          || event.type === LFLT_THEMATIC_PERIOD_CHANGED
+        ),
         takeUntil(this.unsubscribe$)
       )
       .subscribe((event: EventInterface): void => {

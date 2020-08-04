@@ -21,11 +21,20 @@ interface BoundaryHierarchyIntf {
 export const LFLT_BOUNDARY_CHANGED = 'LFLT_BOUNDARY_CHANGED';
 const LFLT_INTERACTIVE_LAYERS_READY = 'LFLT_INTERACTIVE_LAYERS_READY';
 
+const uuidv4 = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 @Directive()
 export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwareDirective
  implements AfterViewChecked {
 
   public selectionProperties: any = {};
+
+  public instanceId;
 
   @ContentChildren(LeafletInteractiveLayerDirective) interactiveLayerDirectivesQueryList: QueryList<LeafletInteractiveLayerDirective>;
 
@@ -68,6 +77,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
   ngAfterViewChecked(): void {
     // instantiate interactive layer when map is created
     if (this.areLayersReady) {
+      console.log('LeafletInteractiveLayersDirective::ngAfterViewChecked', this.instanceId);
       this.mapFacade.broadcast({
         type: LFLT_INTERACTIVE_LAYERS_READY
       });
@@ -86,7 +96,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
       filter: this.filter,
       style: this.styleFn
     });
-    console.log(`LeafletInteractiveLayers::makeLayer: ${lastLayer} layers created`);
+    console.log(`LeafletInteractiveLayers::makeLayer: ${lastLayer} layers created`, this.instanceId);
     return this.interactiveLayer;
   }
 
@@ -114,7 +124,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
         };
         this.selectionProperties = payload.boundaryHierarchy;
         const thisLayer: number = Object.keys(this.selectionProperties).length;
-        console.log('LeafletInteractiveLayers::event changed', this.selectionProperties, thisLayer);
+        console.log('LeafletInteractiveLayers::event changed', this.instanceId, this.selectionProperties, thisLayer);
         this.refreshLayer(payload.bounds);
       });
     this.refreshLayer();
@@ -134,7 +144,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
       }
     }
     layer.on('click', (ev: L.LeafletMouseEvent): void => {
-      console.log(`layer.on('click')`);
+      console.log(`layer.on('click')`, this.instanceId);
       this.zoomIn(ev, feature, layer);
     });
   }
@@ -193,7 +203,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
       }
     });
 
-    console.log('LeafletInteractiveLayers::zoomIn', thisLayer, 'of', lastLayer, this.selectionProperties);
+    console.log('LeafletInteractiveLayers::zoomIn', this.instanceId, thisLayer, 'of', lastLayer, this.selectionProperties);
   }
 
   private zoomOut(ev: L.LeafletMouseEvent): void {
@@ -221,7 +231,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
     }
     --thisLayer;
     const lastLayer: number = this.interactiveLayerDirectives.length;
-    console.log('LeafletInteractiveLayers::zoomOut', thisLayer, 'of', lastLayer, this.selectionProperties);
+    console.log('LeafletInteractiveLayers::zoomOut', this.instanceId, thisLayer, 'of', lastLayer, this.selectionProperties);
   }
 
   private refreshLayer(bounds?: L.LatLngBounds): void {
@@ -256,6 +266,8 @@ export class LeafletInteractiveObservableLayersDirective extends LeafletInteract
     mapFacade: MapFacade
   ) {
     super(mapFacade);
+    this.instanceId = `main:${uuidv4()}`;
+    console.log(`LeafletInteractiveObservableLayersDirective::constructor`, this.instanceId);
   }
 
   ngAfterViewChecked(): void {
@@ -279,10 +291,12 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
     mapFacade: MapFacade
   ) {
     super(mapFacade);
+    this.instanceId = `main:${uuidv4()}`;
   }
 
   ngAfterViewChecked(): void {
     if (this.areLayersReady) {
+      console.log('LeafletInteractiveObserverLayersDirective::subscribed', this.instanceId);
       this.observable.event$
       .pipe(
         takeUntil(this.unsubscribe$)

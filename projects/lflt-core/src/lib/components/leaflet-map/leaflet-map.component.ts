@@ -40,6 +40,13 @@ export class LeafletMapComponent implements OnInit, AfterViewInit {
     this.initMap();
   }
 
+  ngAfterViewChecked() {
+    if (this.mustInvalidateMapSize()) {
+      this.invalidateMapSize();
+      this.mustInvalidate = false;
+    }
+  }
+
   hasMapContainerDimensionChanged(): boolean {
     return this.mapContainer.nativeElement.offsetWidth !== this.mapContainerDimension.width
       || this.mapContainer.nativeElement.offsetHeight !== this.mapContainerDimension.height;

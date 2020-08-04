@@ -242,7 +242,7 @@ export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwar
 }
 
 @Directive({
-  selector: 'lflt-interactive-layers',
+  selector: 'lflt-interactive-layers:not([observable])',
   exportAs: 'observable'
 })
 export class LeafletInteractiveObservableLayersDirective extends LeafletInteractiveLayersDirective

@@ -3,3 +3,10 @@
   border: none;
   box-shadow: none;
 }
+
+.lflt-transparent-tooltip.leaflet-tooltip-top:before,
+.lflt-transparent-tooltip.leaflet-tooltip-bottom:before,
+.lflt-transparent-tooltip.leaflet-tooltip-left:before,
+.lflt-transparent-tooltip.leaflet-tooltip-right:before {
+  content:none;
+}

@@ -45,7 +45,9 @@ export abstract class LeafletReadyAwareDirective implements OnDestroy {
 
     const layerReady$: Observable<EventInterface> = this.mapFacade.event$
     .pipe(
-      filter((event: EventInterface): boolean => event.type === eventType),
+      filter((event: EventInterface): boolean => event.type === eventType &&
+        (event.payload == undefined || event.payload === this.instanceId)
+      ),
       takeUntil(this.unsubscribe$)
     );
 
@@ -134,7 +136,8 @@ export class LeafletGeoJSONLayerDirective extends LeafletLayer implements OnChan
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.geojson && this.geojson) {
       this.mapFacade.broadcast({
-        type: this.eventType
+        type: this.eventType,
+        payload: this.instanceId
       });
     }
   }

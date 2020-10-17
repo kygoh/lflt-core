@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   mysAdm2$: Observable<L.GeoJSON>;
 
   malaysiaParliamentMap$: Observable<L.GeoJSON>;
+  singaporeMap$: Observable<L.GeoJSON>;
 
   private COVID: any;
   private MAPPING: any;
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
     subdomains: 'abcd'
   };
   geojsonOptions: L.GeoJSONOptions;
+  sgpGeojsonOptions: L.GeoJSONOptions = {
+    attribution: '<a href="https://github.com/yinshanyang/singapore">Singapore</a>',
+    style: { color: 'red', weight: 0.25, dashArray: '3', fill: false }
+  };
 
   constructor(
     private http: HttpClient,
@@ -43,6 +48,7 @@ export class AppComponent implements OnInit {
     this.mysAdm1$ = this.getGeoJSON('assets/data/mys_adm1.geojson');
     this.mysAdm2$ = this.getGeoJSON('assets/data/mys_adm2_mod.geojson');
     this.malaysiaParliamentMap$ = this.getGeoJSON('assets/data/malaysia_parliamentary_carto_2018.geojson');
+    this.singaporeMap$ = this.getGeoJSON('assets/data/sgp_adm1.geojson');
   }
 
   getGeoJSON(url: string): Observable<L.GeoJSON> {
@@ -79,6 +85,7 @@ export class AppComponent implements OnInit {
 
   style = (feature: Feature<GeometryObject, GeoJsonProperties>): L.PathOptions => {
     return {
+      attribution: '<a href="https://data.humdata.org/dataset/malaysia-administrative-level-0-2-boundaries">Malaysia - Subnational Administrative Boundaries</a>, <a href="https://daneshtindak.carto.com/tables/malaysia_parliamentary_carto_2018/public/map">malaysia_parliamentary_carto_2018</a>',
       fillColor: this.getColor(feature.properties.parliament),
       weight: 0.25,
       opacity: 1.0,

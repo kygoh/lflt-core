@@ -22,20 +22,11 @@ export const LFLT_BOUNDARY_CHANGED = 'LFLT_BOUNDARY_CHANGED';
 export const LFLT_THEMATIC_PERIOD_CHANGED = 'LFLT_THEMATIC_PERIOD_CHANGED';
 const LFLT_INTERACTIVE_LAYERS_READY = 'LFLT_INTERACTIVE_LAYERS_READY';
 
-const uuidv4 = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
-
 @Directive()
 export abstract class LeafletInteractiveLayersDirective extends LeafletReadyAwareDirective
  implements AfterViewChecked {
 
   public selectionProperties: any = {};
-
-  public instanceId;
 
   @ContentChildren(LeafletInteractiveLayerDirective) interactiveLayerDirectivesQueryList: QueryList<LeafletInteractiveLayerDirective>;
 
@@ -269,7 +260,6 @@ export class LeafletInteractiveObservableLayersDirective extends LeafletInteract
     mapFacade: MapFacade
   ) {
     super(mapFacade);
-    this.instanceId = `main:${uuidv4()}`;
     console.log(`LeafletInteractiveObservableLayersDirective::constructor`, this.instanceId);
   }
 
@@ -296,7 +286,6 @@ export class LeafletInteractiveObserverLayersDirective extends LeafletInteractiv
     mapFacade: MapFacade
   ) {
     super(mapFacade);
-    this.instanceId = `main:${uuidv4()}`;
   }
 
   ngAfterViewChecked(): void {

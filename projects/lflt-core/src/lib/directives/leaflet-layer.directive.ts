@@ -15,10 +15,17 @@ export const BLANK_STYLE: L.PathOptions = {color: '#aaaaaa', weight: 1, fillOpac
 const LFLT_TILE_LAYER_READY = 'LFLT_TILE_LAYER_READY';
 const LFLT_GEOJSON_LAYER_READY = 'LFLT_GEOJSON_LAYER_READY';
 
+/* Reference: https://stackoverflow.com/a/2117523 */
+const uuidv4 = (): string =>
+  `${1e7}-${1e3}-${4e3}-${8e3}-${1e11}`.replace(/[018]/g, (c: string) =>
+    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+);
+
 @Directive()
 export abstract class LeafletReadyAwareDirective implements OnDestroy {
 
   protected unsubscribe$: Subject<void> = new Subject<void>();
+  protected instanceId;
 
   constructor(
     protected mapFacade: MapFacade,
@@ -26,6 +33,7 @@ export abstract class LeafletReadyAwareDirective implements OnDestroy {
   ) {
     this.subscribe(eventType);
     this.eventType = eventType;
+    this.instanceId = uuidv4();
   }
 
   private subscribe(eventType: string): void {
